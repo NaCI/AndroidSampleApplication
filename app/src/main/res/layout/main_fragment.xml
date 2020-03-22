@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_screen"
+        android:fitsSystemWindows="true"
+        tools:context=".ui.main.MainFragment">
+
+        <Button
+            style="@style/ButtonStyle"
+            android:id="@+id/fetchAnimeListBTN"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> viewModel.onFetchClicked()}"
+            android:text="@string/list_anime_btn_title"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/animeGenreTIL" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/animeGenreTIL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            app:error="@{viewModel.errorString}"
+            app:errorEnabled="true"
+            app:hintEnabled="false"
+            app:layout_constraintBottom_toTopOf="@+id/fetchAnimeListBTN"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed">
+
+            <EditText
+                style="@style/EditTextStyle"
+                android:id="@+id/animeGenreET"
+                android:layout_width="match_parent"
+                android:layout_gravity="center_vertical"
+                android:imeOptions="actionSearch"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:hint="@string/enter_anime_genre_hint"
+                android:text="@={viewModel.animeGenre}" />
+        </com.google.android.material.textfield.TextInputLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.naci.mytestapplication.ui.main.MainViewModel" />
+    </data>
+</layout>

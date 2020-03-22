@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/itemAnime_imgPoster"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_300sdp"
+            android:scaleType="fitXY"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcUrl="@{item.detail.posterData.mediumImage}" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/itemAnime_imgPoster"
+            app:layout_constraintStart_toStartOf="parent"
+            android:alpha="0.9"
+            android:background="@android:color/darker_gray"
+            android:orientation="vertical"
+            android:onClick="@{() -> listener.onAnimeDetailClicked(item)}"
+            android:padding="@dimen/_16sdp">
+
+            <TextView
+                android:id="@+id/itemAnime_tvTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="2"
+                app:fontFamily="@font/quicksand_font_bold"
+                android:text="@{item.detail.title}"
+                android:textColor="@android:color/holo_blue_dark"
+                tools:text="42" />
+
+            <TextView
+                android:id="@+id/itemAnime_tvDesc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:textColor="@color/black"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:maxLines="6"
+                app:fontFamily="@font/quicksand_font_dash"
+                android:text="@{item.detail.description}"
+                tools:text="Perfect Number" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.naci.mytestapplication.data.remote.response.AnimeData" />
+
+        <variable
+            name="listener"
+            type="com.naci.mytestapplication.ui.listener.OnAnimeItemClickListener" />
+    </data>
+</layout>

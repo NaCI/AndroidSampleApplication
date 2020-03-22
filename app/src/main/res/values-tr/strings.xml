@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name_unused">My Test Application</string>
+    <string name="list_anime_btn_title">Animeleri Listele</string>
+    <string name="enter_anime_genre_hint">Anime Tipi Giriniz (Örn: adventure)</string>
+    <string name="anime_search_error"><b>%1$s</b> kategorisinde hiçbir anime\'miz bulunamadı\n Saygılarımızla. </string>
+    <string name="no_anime_text">Girdiğiniz kategoride anime bulunamadı</string>
+</resources>

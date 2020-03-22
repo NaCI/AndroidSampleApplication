@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name_unused">My Test Application</string>
+    <string name="list_anime_btn_title">Fetch Anime List</string>
+    <string name="enter_anime_genre_hint">Enter Anime Genre (E.g: adventure)</string>
+    <string name="anime_search_error">No result for genre : <b>%1$s</b>\n Your\'s Faithfully. </string>
+    <string name="no_anime_text">No anime found for the entered genre</string>
+</resources>

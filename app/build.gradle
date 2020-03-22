@@ -1,0 +1,100 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.2"
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    dataBinding {
+        enabled = true
+    }
+
+    defaultConfig {
+        applicationId "com.naci.mytestapplication"
+        minSdkVersion 19
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        debug {
+            buildConfigField "String", "BASE_URL", '"https://kitsu.io"'
+        }
+        release {
+            buildConfigField "String", "BASE_URL", '"https://kitsu.io"'
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    flavorDimensions "tier"
+    productFlavors {
+        flavorTest {
+            applicationIdSuffix ".test"
+            dimension "tier"
+            resValue "string", "app_name", 'My Test Application'
+            versionName "1.0"
+            versionCode 1
+        }
+
+        flavorProduction {
+            applicationIdSuffix ".prod"
+            dimension "tier"
+            resValue "string", "app_name", 'My Application'
+            versionName "1.0"
+            versionCode 1
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    //MATERIAL
+    implementation "com.google.android.material:material:$rootProject.ext.material_version"
+
+    //DAGGER 2
+    implementation "com.google.dagger:dagger:$rootProject.ext.dagger_version"
+    //implementation "com.google.dagger:dagger-android:$daggerVersion"
+    //implementation "com.google.dagger:dagger-android-support:$daggerVersion" // if you use the support libraries
+    annotationProcessor "com.google.dagger:dagger-android-processor:$rootProject.ext.dagger_version"
+    annotationProcessor "com.google.dagger:dagger-compiler:$rootProject.ext.dagger_version"
+
+    //RETROFIT
+    implementation "com.squareup.retrofit2:retrofit:$rootProject.ext.retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$rootProject.ext.retrofit_version"
+    implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.ext.loggingInterceptor_version"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$rootProject.ext.retrofitCallAdapter_version"
+
+    //GLIDE
+    implementation "com.github.bumptech.glide:glide:$rootProject.ext.glide_version"
+    annotationProcessor "com.github.bumptech.glide:compiler:$rootProject.ext.glide_version"
+
+    //TIMBER
+    implementation "com.jakewharton.timber:timber:$rootProject.ext.timber_version"
+
+    //RECYCLERVIEW
+    implementation "androidx.recyclerview:recyclerview:$rootProject.ext.recyclerview_version"
+
+    //SDP and SSP
+    implementation "com.intuit.sdp:sdp-android:$rootProject.ext.sdp_version"
+    implementation "com.intuit.ssp:ssp-android:$rootProject.ext.ssp_version"
+
+    //RXJAVA
+    implementation "io.reactivex.rxjava2:rxjava:$rootProject.ext.rxJava_version"
+    implementation "io.reactivex.rxjava2:rxandroid:$rootProject.ext.rxAndroid_version"
+}
