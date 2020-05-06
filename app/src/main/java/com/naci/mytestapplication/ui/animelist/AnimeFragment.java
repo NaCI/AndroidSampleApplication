@@ -20,6 +20,7 @@ import com.naci.mytestapplication.data.remote.response.AnimeData;
 import com.naci.mytestapplication.databinding.AnimeFragmentBinding;
 import com.naci.mytestapplication.ui.base.BaseFragment;
 import com.naci.mytestapplication.ui.listener.OnAnimeItemClickListener;
+import com.naci.mytestapplication.util.SharedPrefsUtil;
 import com.naci.mytestapplication.util.ViewModelFactory;
 import com.naci.mytestapplication.util.enums.ArgExtras;
 
@@ -36,6 +37,9 @@ public class AnimeFragment extends BaseFragment<AnimeFragmentBinding> implements
 
     @Inject
     ViewModelFactory viewModelFactory;
+
+    @Inject
+    SharedPrefsUtil sharedPrefsUtil;
 
     public static AnimeFragment newInstance(ArrayList<AnimeData> animeList) {
         Bundle args = new Bundle();
@@ -59,6 +63,8 @@ public class AnimeFragment extends BaseFragment<AnimeFragmentBinding> implements
         if (getArguments() != null) {
             animeList = getArguments().getParcelableArrayList(ArgExtras.ANIME_LIST_EXTRA.getText());
         }
+        // Test sharedPrefUtil
+        sharedPrefsUtil.getObject("SomeData", String.class);
     }
 
     @Override
@@ -99,7 +105,7 @@ public class AnimeFragment extends BaseFragment<AnimeFragmentBinding> implements
     }
 
     private void setAdapter() {
-        if(animeList == null || animeList.isEmpty()) {
+        if (animeList == null || animeList.isEmpty()) {
             viewDataBinding.noItemTV.setVisibility(View.VISIBLE);
         } else {
             viewDataBinding.noItemTV.setVisibility(View.GONE);

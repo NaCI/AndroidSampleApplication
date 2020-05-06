@@ -18,6 +18,7 @@ import com.naci.mytestapplication.databinding.MainFragmentBinding;
 import com.naci.mytestapplication.ui.animelist.AnimeFragment;
 import com.naci.mytestapplication.ui.base.BaseFragment;
 import com.naci.mytestapplication.ui.customview.CustomProgressBar;
+import com.naci.mytestapplication.util.SharedPrefsUtil;
 import com.naci.mytestapplication.util.ViewModelFactory;
 
 import java.util.ArrayList;
@@ -38,6 +39,9 @@ public class MainFragment extends BaseFragment<MainFragmentBinding> implements T
     @Inject
     @Named("TestModule")
     String testModuleString;
+
+    @Inject
+    SharedPrefsUtil sharedPrefsUtil;
 
     private MainViewModel mainViewModel;
 
@@ -89,7 +93,9 @@ public class MainFragment extends BaseFragment<MainFragmentBinding> implements T
                 }
                 case SUCCESS: {
                     Timber.d("Anime Response : %s", animeModelResource.data);
-                    if(animeModelResource.data != null) {
+                    if (animeModelResource.data != null) {
+                        // Test sharedPrefsUtil
+                        sharedPrefsUtil.putObject("SomeData", "Anime List Fethed");
                         getBaseActivity().replaceFragment(AnimeFragment.newInstance(new ArrayList<>(animeModelResource.data.getAnimeList())));
                     }
                     break;
@@ -97,7 +103,8 @@ public class MainFragment extends BaseFragment<MainFragmentBinding> implements T
                 case ERROR: {
                     Toast.makeText(getContext(), animeModelResource.message, Toast.LENGTH_SHORT).show();
                     break;
-                } case COMPLETED: {
+                }
+                case COMPLETED: {
                     customProgressBar.hideProgress();
                     break;
                 }
@@ -113,7 +120,7 @@ public class MainFragment extends BaseFragment<MainFragmentBinding> implements T
 
     @Override
     public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
-        if(actionId == EditorInfo.IME_ACTION_DONE || actionId == EditorInfo.IME_ACTION_SEARCH){
+        if (actionId == EditorInfo.IME_ACTION_DONE || actionId == EditorInfo.IME_ACTION_SEARCH) {
             mainViewModel.onFetchClicked();
         }
         return false;

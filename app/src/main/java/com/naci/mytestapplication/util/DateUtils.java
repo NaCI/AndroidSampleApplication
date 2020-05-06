@@ -8,6 +8,10 @@ import java.util.Locale;
 
 public class DateUtils {
 
+    private DateUtils() {
+        // disable initialization
+    }
+
     public static int getCurrentDay() {
         return Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
     }

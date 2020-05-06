@@ -58,7 +58,7 @@ public class MainViewModel extends ViewModel {
 
                     @Override
                     public void onError(Throwable e) {
-                        Timber.e("getAnimeList Request onError", e);
+                        Timber.e(e, "getAnimeList Request onError");
                         animeListResponse.setValue(Resource.error("Error on connection", e));
                     }
 

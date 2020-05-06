@@ -9,6 +9,10 @@ import com.naci.mytestapplication.ui.base.BaseFragment;
 
 public class NavigationUtils {
 
+    private NavigationUtils() {
+        // disable initialization
+    }
+
     public static void addFragment(FragmentManager fragmentManager, Fragment fragment, int container) {
         FragmentTransaction ft = fragmentManager.beginTransaction();
         Fragment previousFragment = fragmentManager.findFragmentById(container);
@@ -17,9 +21,9 @@ public class NavigationUtils {
         ft.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right);
 
         ft.show(fragment)
-            .add(container, fragment)
-            .addToBackStack(fragment.getClass().getName())
-            .commit();
+                .add(container, fragment)
+                .addToBackStack(fragment.getClass().getName())
+                .commit();
 
         if (previousFragment != null) {
             ft.hide(previousFragment);
@@ -33,8 +37,8 @@ public class NavigationUtils {
         ft.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right);
 
         ft.replace(container, fragment)
-            .addToBackStack(fragment.getClass().getName())
-            .commit();
+                .addToBackStack(fragment.getClass().getName())
+                .commit();
     }
 
     public static void clearAllFragment(FragmentManager fragmentManager) {

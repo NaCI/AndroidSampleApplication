@@ -23,6 +23,10 @@ import java.util.Locale;
 
 public class AndroidUtil {
 
+    private AndroidUtil() {
+        // disable initialization
+    }
+
     public static String getVersionName(Context context) {
         String strVersion;
         PackageInfo packageInfo;
